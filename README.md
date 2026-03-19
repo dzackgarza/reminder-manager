@@ -1,15 +1,22 @@
-# reminder-manager
+# skill-suggester
 
-To install dependencies:
+Standalone Python CLI for suggesting relevant skills from prompt text.
 
-```bash
-bun install
-```
-
-To run:
+## Install
 
 ```bash
-bun run index.ts
+uv sync --dev
 ```
 
-This project was created using `bun init` in bun v1.3.10. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+## Check
+
+```bash
+just check
+```
+
+## Run
+
+```bash
+uv run skill-suggester doctor
+uv run skill-suggester top-skills --prompt "Need help with git history cleanup"
+```
