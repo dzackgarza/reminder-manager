@@ -1,0 +1,22 @@
+{
+  "name": "reminder-manager",
+  "version": "0.1.0",
+  "description": "Programmatic skill reminder logic",
+  "main": "index.ts",
+  "type": "module",
+  "bin": {
+    "reminder": "index.ts"
+  },
+  "scripts": {
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.8.1"
+  }
+}
