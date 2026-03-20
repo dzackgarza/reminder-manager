@@ -1,5 +1,5 @@
 {
-  "name": "reminder-manager",
+  "name": "skill-suggester",
   "version": "0.1.0",
   "description": "Programmatic skill reminder logic",
   "main": "index.ts",
