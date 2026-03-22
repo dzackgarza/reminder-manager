@@ -7,7 +7,7 @@ from pathlib import Path
 from cyclopts import App
 from pydantic import BaseModel, ConfigDict, Field, validate_call
 
-from .core import SkillCache, default_skills_dirs
+from .core import DEFAULT_MODEL, SkillCache, default_skills_dirs
 
 app = App(name="skill-suggester", help="Suggest relevant skills for a prompt.")
 
@@ -30,9 +30,7 @@ def doctor() -> None:
     skills_dirs = default_skills_dirs()
     cache = SkillCache(skills_dirs)
     existing_dirs = [path for path in skills_dirs if Path(path).expanduser().exists()]
-    model_name = os.environ.get(
-        "REMINDER_INJECTION_MODEL", "mixedbread-ai/mxbai-embed-xsmall-v1"
-    ).strip()
+    model_name = os.environ.get("REMINDER_INJECTION_MODEL", DEFAULT_MODEL).strip()
     report = DoctorReport(
         skills_dirs=skills_dirs,
         skills_dir_count=len(skills_dirs),
@@ -49,7 +47,7 @@ def doctor() -> None:
 @validate_call
 def top_skills(prompt: str, top_k: int = Field(default=3, ge=1)) -> None:
     skills = SkillCache().top_skills_for_prompt(prompt, top_k)
-    print(json.dumps([skill.__dict__ for skill in skills]))
+    print(json.dumps([skill.model_dump(exclude={"embedding"}) for skill in skills]))
 
 
 def main() -> None:
